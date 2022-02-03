@@ -53,6 +53,8 @@ def sakamotoAlgorithm(year, month, day):
     """
     Compute day of week by using Sakamoto's algorithm
 
+    https://en.wikipedia.org/wiki/Determination_of_the_day_of_the_week
+
     :param year: year of desired day of week
     :param month: month of desired day of week
     :param day: day of desired day of week
@@ -99,7 +101,7 @@ def gaussAlgorithm(year, month, day):
     return w
 
 
-def zellerAlgorithm(year=1900, month=1, day=1):
+def zellerAlgorithm(year, month, day):
     """
     Compute day of week by using Zeller's algorithm
 
@@ -140,30 +142,33 @@ def getDayOfWeek(year=datetime.date.today().year, month=datetime.date.today().mo
     """
     Get the day of the week for a given date
 
-    :return:
+    :param year: year of desired day of week
+    :param month: month of desired day of week
+    :param day: day of desired day of week
+    :return: ISO day-of-week: 1 = Monday to 7 = Sunday
     """
-    # dayOfWeek = sakamotoAlgorithm(year, month, day)
-    # dayOfWeek = gaussAlgorithm(year, month, day)
     dayOfWeek = zellerAlgorithm(year, month, day)
 
     print(f'{year}-{month}-{day}: {daysOfWeekISO[dayOfWeek]}')
+
+    return dayOfWeek
+
+
+def isSunday(year, month, day):
+    """Check if day of week is Sunday"""
+    return getDayOfWeek(year, month, day) == 7
 
 
 if __name__ == '__main__':
     start = time.time()
 
-    # leapYears = leapYearsGenerator(1986)
-    # for i in range(10):
-    #     print(next(leapYears))
-
-    print(getDayOfWeek(1777, 4, 30))
-    print(getDayOfWeek(1855, 2, 23))
-    print(getDayOfWeek(1900, 1, 1))
-    print(getDayOfWeek(2022, 2, 2))
-    print(getDayOfWeek(2022, 2, 3))
-    print(getDayOfWeek(2022, 2, 4))
-    print(getDayOfWeek(2022, 2, 5))
-    print(getDayOfWeek(2022, 2, 6))
+    # How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)
+    sundayCount = 0
+    for year in range(1901, 2001):
+        for month in range(1, 13):
+            if isSunday(year, month, 1):
+                sundayCount += 1
+    print(sundayCount)
 
     end = time.time()
     print(f"{(end - start):.6f} seconds")
