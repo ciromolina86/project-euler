@@ -1,23 +1,21 @@
-import eulerlib, itertools
-import math
+
 
 def compute():
-    triangle = 0
-    for i in itertools.count(1):
-        triangle += i  # This is the ith triangle number, i.e. num = 1 + 2 + ... + i = i * (i + 1) / 2
-        if num_divisors(triangle) > 500:
-            return str(triangle)
+    # Compute sum of proper divisors for each number
+    divisorsum = [0] * 10000
+    for i in range(1, len(divisorsum)):
+        for j in range(i * 2, len(divisorsum), i):
+            divisorsum[j] += i
 
+    print(divisorsum)
 
-# Returns the number of integers in the range [1, n] that divide n.
-def num_divisors(n):
-    end = int(math.sqrt(n))
-    result = sum(2
-                 for i in range(1, end + 1)
-                 if n % i == 0)
-    if end ** 2 == n:
-        result -= 1
-    return result
+    # Find all amicable pairs within range
+    ans = 0
+    for i in range(1, len(divisorsum)):
+        j = divisorsum[i]
+        if j != i and j < len(divisorsum) and divisorsum[j] == i:
+            ans += i
+    return str(ans)
 
 
 if __name__ == "__main__":

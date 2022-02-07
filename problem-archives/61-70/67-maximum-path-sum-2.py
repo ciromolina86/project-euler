@@ -48,7 +48,7 @@ def loadData(fileName):
 if __name__ == '__main__':
     start = time.time()
 
-    fileName = '../data/p067_triangle.txt'
+    fileName = '../../data/p067_triangle.txt'
     data = loadData(fileName)
     print(getMaxSumPath(data))
 
