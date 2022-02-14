@@ -2,5 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../itg-toolbox" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../python-testing" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../sorba-toolbox" vcs="Git" />
   </component>
 </project>

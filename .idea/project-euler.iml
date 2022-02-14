@@ -5,5 +5,8 @@
     <orderEntry type="jdk" jdkName="Python 3.8" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="itg_toolbox" />
+    <orderEntry type="module" module-name="python-testing" />
+    <orderEntry type="module" module-name="itg-toolbox" />
+    <orderEntry type="module" module-name="sorba-toolbox" />
   </component>
 </module>
