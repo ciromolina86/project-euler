@@ -14,6 +14,8 @@ It can be verified that the sum of the numbers on the diagonals is 101.
 
 What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed in the same way?
 """
+import math
+
 import numpy as np
 
 
@@ -93,10 +95,34 @@ def spiralPositionGenerator(dim):
                 segment_length += 1
 
 
+def getSumDiagonals(matrix: np.ndarray):
+    dim = len(matrix)
+    if math.sqrt(matrix.size) == dim:
+        print(f'matrix is square ({dim}x{dim})')
+
+        if isOdd(dim):
+            print(f'matrix dim is odd')
+            sumDiag1 = sum(matrix.diagonal())
+            sumDiag2 = sum(np.fliplr(matrix).diagonal())
+            return sumDiag1 + sumDiag2 - matrix[dim // 2][dim // 2]
+        else:
+            print(f'matrix dim is even')
+            sumDiag1 = sum(matrix.diagonal())
+            sumDiag2 = sum(np.fliplr(matrix).diagonal())
+            return sumDiag1 + sumDiag2
+
+
 def main():
-    dimension = 1001
-    print(spiralMatrix(dim=dimension))
+    dimension = 5
+    matrix = spiralMatrix(dim=dimension)
+    print()
+    print(matrix)
+
+    print()
+    print(getSumDiagonals(matrix))
+
     sumSpiralDiagonals = getSumSpiralDiagonals(dim=dimension)
+    print()
     print(sumSpiralDiagonals)
 
 
