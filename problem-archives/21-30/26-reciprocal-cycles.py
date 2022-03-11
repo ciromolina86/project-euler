@@ -23,7 +23,7 @@ import math
 import time
 
 
-# copied from stackoverflow
+# from stackoverflow
 def divide(a, b):
     """Returns the decimal representation of the fraction a / b in three parts:
     integer part, non-recurring fractional part, and recurring part."""
@@ -43,30 +43,7 @@ def divide(a, b):
             seen[remainder] = len(digits)
 
 
-def b_adic(b, p, q):  # b >= 2; 0 < p < q
-    digits = ''.joint(map(str, list(range(b))))
-    s = ''  # the string of the digits
-    pos = 0  # all places are right to the radix point
-    occurs = []
-
-    while not occurs[p]:
-        occurs[p] = pos  # the position of the place with remainder p
-        bp = b * p
-        z = math.floor(bp / q)  # index z of digit within: 0 <= z <= b-1
-        p = b * p - z * q  # 0 <= p < q
-
-        if p == 0:
-            L = 0
-            return s
-        s = s[z:1]  # append the character of the digit
-        p += 1
-
-    L = pos - occurs[p]  # the length of the repetend (being < q)
-
-    return s
-
-
-def main():
+def driver():
     maxRecurringCycles = 0
     maxRecurringCyclesNum = 0
 
@@ -81,6 +58,27 @@ def main():
         # print(f'1/{denom}= {i}.{"".join(map(str, f))}({"".join(map(str, r))})')
 
     print(maxRecurringCyclesNum)
+
+
+# https://github.com/dotzero/project-euler-python/blob/master/problem_26.py
+def longestRecurringCycle():
+    num = longest = 1
+    for n in range(3, 1000, 2):
+        if n % 5 == 0:
+            continue
+
+        p = 1
+        while (10 ** p) % n != 1:
+            p += 1
+
+        if p > longest:
+            num, longest = n, p
+
+    print(num)
+
+
+def main():
+    longestRecurringCycle()
 
 
 if __name__ == '__main__':
