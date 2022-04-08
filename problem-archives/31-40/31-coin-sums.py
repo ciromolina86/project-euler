@@ -14,14 +14,6 @@ How many different ways can £2 be made using any number of coins?
 import time
 
 
-class Coin:
-    def __init__(self, value):
-        self.value = value  # value in pence
-
-
-coins = [1, 2, 5, 10, 20, 50, 100, 200]
-
-
 def findCombCount(total=200):
     """brute force solution"""
     combCount = 0
